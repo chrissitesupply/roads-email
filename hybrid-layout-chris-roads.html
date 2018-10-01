@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+  <meta charset="utf-8">
+  <!-- utf-8 works for most cases -->
+  <meta name="viewport" content="width=device-width">
+  <!-- Forcing initial-scale shouldn't be necessary -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Use the latest (edge) version of IE rendering engine -->
+  <meta name="x-apple-disable-message-reformatting">
+  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+  <title></title>
+  <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+  <!-- Web Font / @font-face : BEGIN -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+  <!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+  <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+  <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+  <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+  <!--[if !mso]><!-->
+  <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+  <!--<![endif]-->
+
+  <!-- Web Font / @font-face : END -->
+
+  <!-- CSS Reset : BEGIN -->
+  <style>
+    /* What it does: Remove spaces around the email design added by some email clients. */
+
+    /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+
+    html,
+    body {
+      margin: 0 auto !important;
+      padding: 0 !important;
+      height: 100% !important;
+      width: 100% !important;
+      /* added by chris  */
+      font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+    }
+
+    /* What it does: Stops email clients resizing small text. */
+
+    * {
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* What it does: Centers email on Android 4.4 */
+
+    div[style*="margin: 16px 0"] {
+      margin: 0 !important;
+    }
+
+    /* What it does: Stops Outlook from adding extra spacing to tables. */
+
+    table,
+    td {
+      mso-table-lspace: 0pt !important;
+      mso-table-rspace: 0pt !important;
+    }
+
+    /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+
+    table {
+      border-spacing: 0 !important;
+      border-collapse: collapse !important;
+      table-layout: fixed !important;
+      margin: 0 auto !important;
+    }
+
+    table table table {
+      table-layout: auto;
+    }
+
+    /* What it does: Uses a better rendering method when resizing images in IE. */
+
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+
+    /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+
+    a {
+      text-decoration: none;
+    }
+
+    /* What it does: A work-around for email clients meddling in triggered links. */
+
+    *[x-apple-data-detectors],
+    /* iOS */
+
+    .unstyle-auto-detected-links *,
+    .aBn {
+      border-bottom: 0 !important;
+      cursor: default !important;
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+
+    /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+
+    .a6S {
+      display: none !important;
+      opacity: 0.01 !important;
+    }
+
+    /* If the above doesn't work, add a .g-img class to any image in question. */
+
+    img.g-img+div {
+      display: none !important;
+    }
+
+    /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+
+    /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+    /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+
+    @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+      .email-container {
+        min-width: 320px !important;
+      }
+    }
+
+    /* iPhone 6, 6S, 7, 8, and X */
+
+    @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+      .email-container {
+        min-width: 375px !important;
+      }
+    }
+
+    /* iPhone 6+, 7+, and 8+ */
+
+    @media only screen and (min-device-width: 414px) {
+      .email-container {
+        min-width: 414px !important;
+      }
+    }
+  </style>
+
+
+
+
+  <!-- CSS Reset : END -->
+  <!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
+  <!--[if mso]>
+	<style type="text/css">
+		ul,
+		ol {
+			margin: 0 !important;
+		}
+		li {
+			margin-left: 30px !important;
+		}
+		li.list-item-first {
+			margin-top: 0 !important;
+		}
+		li.list-item-last {
+			margin-bottom: 10px !important;
+		}
+	</style>
+	<![endif]-->
+
+  <!--  chris  - added to try and fix outlook 2013 reverting to Times roman-->
+  <!--[if mso]>
+        <style type="text/css">
+        body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
+        </style>
+        <![endif]-->
+
+  <!-- Progressive Enhancements : BEGIN -->
+  <style>
+    /* What it does: Hover styles for buttons */
+
+    .button-td,
+    .button-a {
+      transition: all 100ms ease-in;
+    }
+
+    .button-td-primary:hover,
+    .button-a-primary:hover {
+      background: #555555 !important;
+      border-color: #555555 !important;
+    }
+
+    /* Media Queries */
+
+    @media screen and (max-width: 480px) {
+
+      /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+      .fluid {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      /* What it does: Forces table cells into full-width rows. */
+      .stack-column,
+      .stack-column-center {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        direction: ltr !important;
+      }
+      /* And center justify these ones. */
+      .stack-column-center {
+        text-align: center !important;
+      }
+
+      /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+      .center-on-narrow {
+        text-align: center !important;
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+      }
+      table.center-on-narrow {
+        display: inline-block !important;
+      }
+
+      /* What it does: Adjust typography on small screens to improve readability */
+      .email-container p {
+        font-size: 17px !important;
+      }
+    }
+  </style>
+  <!-- Progressive Enhancements : END -->
+
+  <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+  <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+</head>
+<!--
+	The email background color (#222222) is defined in three places:
+	1. body tag: for most email clients
+	2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
+	3. mso conditional: For Windows 10 Mail
+-->
+
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #dddddd;">
+  <center style="width: 100%; background-color: #dddddd;">
+    <!--[if mso | IE]>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #dddddd;">
+    <tr>
+    <td>
+    <![endif]-->
+
+    <!-- Visually Hidden Preheader Text : BEGIN -->
+    <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;">
+      Do you know what you need to be wearing       ? 
+      
+      
+      This is another of our quick guides to the best PPE and workwear to keep you warm and safe at work.
+    </div>
+    <!-- Visually Hidden Preheader Text : END -->
+
+    <!-- Create white space after the desired preview text so email clients don’t pull other distracting text into the inbox preview. Extend as necessary. -->
+    <!-- Preview Text Spacing Hack : BEGIN -->
+    <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;">
+      &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+    </div>
+    <!-- Preview Text Spacing Hack : END -->
+
+    <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+            2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+            Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+        -->
+    <div style="max-width: 680px; margin: 0 auto;" class="email-container">
+      <!--[if mso]>
+            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="680">
+            <tr>
+            <td>
+            <![endif]-->
+
+      <!-- Email Body : BEGIN -->
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: 0 auto;">
+
+        <!-- Email Header : BEGIN -->
+        <tr>
+          <td style="padding: 20px 0; text-align: center; background-color:#fff">
+
+            <!--  trouble viewing-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;">
+              <tbody>
+                <tr>
+                  <td valign="top" style="padding-top:9px; background-color: #fff;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                     <tr>
+                       <![endif]-->
+                    <!--[if mso]>
+				  <td valign="top" width="600" style="width:600px;">
+				  <![endif]-->
+
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="color: #222; max-width:100%; min-width:100%;" width="100%">
+                      <tbody>
+                        <tr>
+                          <td valign="top" class="mcnTextContent" style="padding: 0px 18px 9px; text-align: center;">
+                            Hivis.net have got a great deal for you!&nbsp;<br>
+                            <a href="*|ARCHIVE|*" target="_blank">Having trouble viewing?</a><br> &nbsp;
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+				</td>
+				<![endif]-->
+
+                    <!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!--hivis logo and greeting-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%; background-color: white;">
+              <tbody>
+                <tr>
+                  <td valign="top" style="padding:9px">
+                    <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" style="min-width:100%;">
+                      <tbody>
+                        <tr>
+                          <td valign="top" style="width: 200px; padding-right: 9px; padding-left: 9px; padding-top: 0; padding-bottom: 0;">
+                            <a href="https://www.hivis.net/" title="" class="" target="_blank">
+                            <img align="left" alt="hivis dot net logo" 
+                            src="https://gallery.mailchimp.com/ad80b8ca80a86b140b303173b/images/fe971c8b-b629-4c86-b51d-38f22b53a99f.jpg" 
+                            width="190" style="max-width:190px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" >
+                            </a>
+                          </td>
+                          <td valign="top" style="width: 350px; padding-right: 9px; padding-left: 9px; padding-top: 0; padding-bottom: 0;">
+                            Hello, *|IF:FNAME|**|TITLE:FNAME|*.*|ELSE:|*Customer*|END:IF|*
+
+                            <a href="mailto:info@sitesupplyco.com" style="text-decoration:none;color:#000000;" target="_blank">
+                            <img height="10" src="https://gallery.mailchimp.com/ad80b8ca80a86b140b303173b/images/2024e001-9c09-4caa-998b-9d68ae1ca8cc.png" style="border: 0px initial ; width: 15px; height: 10px; margin: 0px;" width="15" alt="2024e001-9c09-4caa-998b-9d68ae1ca8cc.png"> 
+                            <br>Click for a Quote</a>
+
+                            <img height="11" src="https://gallery.mailchimp.com/ad80b8ca80a86b140b303173b/images/68440cba-7309-46f9-99b7-0a08f4802980.png" style="border: 0px initial ; width: 10px; height: 11px; margin: 0px;" width="10" alt="68440cba-7309-46f9-99b7-0a08f4802980.png"> 0845 009 6750
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+
+            <!-- text menu-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%; background-color: #ffffff">
+              <!--[if gte mso 9]>
+                      <table align="center" border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <![endif]-->
+              <tbody>
+                <tr>
+                  <td valign="top" style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
+                    <!--[if gte mso 9]>
+                            <td align="center" valign="top">
+                              <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
+                      <tbody>
+                        <tr>
+                          <td style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
+                            <table border="0" cellspacing="0" width="100%" style="min-width:100% !important;background-color:#030303;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
+                              <tbody>
+                                <tr>
+                                  <td valign="top" style="padding:18px;color:#F2F2F2;font-family:Helvetica;font-size:14px;font-weight:normal;text-align:center;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;line-height:150%;">
+
+                                    <span style="font-size:15px">
+                                    <a href="http://www.hivis.net/c125/high-visibility-vests-jackets-trousers-and-more/" 
+                                    target="_blank" style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#ffffff;font-weight:normal;text-decoration:none;">Hivis</a>                
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="http://www.hivis.net/c85/workwear/" 
+                                    target="_blank" style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#ffffff;font-weight:normal;text-decoration:none;">Workwear</a>                
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="http://www.hivis.net/c13/safety-corporate-workplace-and-leisure-footwear/" 
+                                    target="_blank" style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#ffffff;font-weight:normal;text-decoration:none;">Footwear</a>                
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="http://www.hivis.net/c36/personal-protection-equipment/" 
+                                    target="_blank" style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#ffffff;font-weight:normal;text-decoration:none;">PPE</a>                
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="http://www.hivis.net/c812/first-aid/" 
+                                    target="_blank" style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#ffffff;font-weight:normal;text-decoration:none;">First Aid</a>
+                                    </span>
+
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!--[if gte mso 9]>
+                          </td>
+                          <![endif]-->
+                    <!--[if gte mso 9]>
+                          </tr>
+                        </table>
+                        <![endif]-->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <!-- Email Header : END -->
+
+
+        <!-- 1 Column Text + Button : BEGIN -->
+        <tr>
+          <td style="background-color: #ffffff;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="padding: 20px; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                  <h1 style="margin: 0 0 10px; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;">
+                  HiVis and PPE for working near traffic
+                  </h1>
+                  <p style="margin: 0 0 10px;">
+                   You need the right workwear at the right time to be seen and safe when working near moving vehicles.
+                  </p>
+                  <p style="margin: 0 0 10px;">
+                    Having the correct clothing at work is vital now the nights are drawing in but do you know what you need to be wearing?.
+                  </p>
+                  <p style="margin: 0 0 10px;">
+                     This is another of our quick guides to the best PPE and workwear to keep you safe at work.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 20px 20px 0 20px;">
+
+                  <!--text HiVis BLOCK - Do you Work Outside-->
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;">
+                    <tbody>
+                      <tr>
+                        <td valign="top" style="padding: 0 20px 0;  margin-bottom: 0;">
+                          <div style="padding-top:0.5em; padding-bottom:0.5em;
+                      font-size: 36px;
+                      margin-bottom:0;
+                      width:100%;
+                      background-color:#EE7C23;
+                      color:#ffffff;
+                      text-align:center;">
+                            Working near traffic?
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </td>
+              </tr>
+
+            </table>
+          </td>
+        </tr>
+
+        <!-- Hero Image - ROAD infographic , Flush : BEGIN -->
+        <tr>
+          <td style="background-color: #ffffff;">
+            <img src="https://gallery.mailchimp.com/2ffff4ff7feaffebb1d6be07b/images/b3dff0b8-e0a7-4e3b-94b5-5747bb2269d6.png" width="680" height="" alt="Work on the Roads" border="0" style="width: 100%; max-width: 680px; height: auto; background: #dddddd; 
+            font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto;" class="fluid g-img">
+          </td>
+        </tr>
+        <!-- Hero Image, Flush : END -->
+
+        <!-- 2 Even Columns : BEGIN -->
+        <tr>
+          <td height="100%" valign="top" width="100%" style="background-color: #ffffff;">
+            <!--[if mso]>
+                        <table align="center" role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                        <tr>
+                        <td valign="top" width="660">
+                        <![endif]-->
+            <table align="center" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:660px;">
+              <tr>
+                <td align="center" valign="top" style="font-size:0; padding: 10px 0;">
+                  <!--[if mso]>
+                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                                    <tr>
+                                    <td valign="top" width="330">
+                                    <![endif]-->
+                  <div style="display:inline-block; margin: 0 -2px; width:100%; min-width:200px; max-width:330px; vertical-align:top;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+
+                                <div style="padding-top:0.5em; 
+                                 padding-bottom:0.5em;
+                                 margin-bottom:1em;
+                                 width:100%;
+                                 background-color:#EE7C23;
+                                 color:#ffffff;
+                                 text-align:center;">
+                                 <strong>
+                                 <p style="margin: 0; padding:0.5em;">
+                                 Ensure clothing is up to EN ISO 20471 standards to give you maximum visibility for oncoming cars
+                                 </p>
+                                 </strong>
+                                </div>
+
+                                <p style="margin: 0; padding-bottom:1em;">
+                                  There are 3 options for this:
+                                </p>
+                                
+                               <div style="padding-top:0.5em; 
+                                 padding-bottom:0.5em;
+                                 margin-bottom:1em;
+                                 width:100%;
+                                 background-color:#EE7C23;
+                                 color:#ffffff;
+                                 text-align:center;"><strong>
+                                 <p style="margin: 0; padding:0.5em;">                                
+                                    Class 1: Basic level
+                                 </p></strong>
+                                </div>
+                                  
+                                  <p style="margin: 0; padding-bottom:1em;">
+                                     Class 1 garments have the minimum level of visibility required for any person working on a private road.
+                                  </p>
+
+                                  <p style="margin: 0; padding-bottom:1em;"> 
+                                     They can be used in conjunction with a higher classed garment
+                                  </p>
+
+                                  <p style="margin: 0; padding-bottom:0em;">
+                                    <strong> The Class 1 requirements are:</strong>
+                                  </p>
+                                  <ul>
+                                    <li>2 metres of 5cm wide reflective tape</li>
+                                    <li>0.14m² of background material</li>
+                                    <li>0.1m² of retro reflective material
+                                  </ul>
+
+
+                                  <p style="margin: 0; padding-bottom:1em;">
+                                    We have a wide range of Jackets, Vests , Jackets Body-warmers and Trousers to keep you safe as well as warm and dry.
+
+                                  <div style="padding-top:0.5em; 
+                                   padding-bottom:0.5em;
+                                   margin-bottom:1em;
+                                   width:100%;
+                                   background-color:#EE7C23;
+                                   color:#ffffff;
+                                   text-align:center;">
+                                   
+                                 
+                                    <p style="margin: 0; padding:0.5em;">
+                                      <strong> Class 2: Advanced level  </strong>
+                                    </p>
+                                 
+                                  </div>
+                                  
+                                    <p style="margin: 0; padding-bottom:1em;">
+                                      Class 2 garments are required for people working on or near A or B roads. 
+                                    </p>
+                                    <p style="margin: 0; padding-bottom:1em;">
+                                      This standard is also necessary for delivery drivers.
+                                    </p>
+                                    <p style="margin: 0; padding-bottom:0em;">
+                                      <strong>The Class 2 requirements are:</strong>
+                                    </p>
+
+                                    <ul>
+                                      <li>2.6 metres of 5cm wide reflective tape</li>
+                                      <li>0.5m² of background material</li>
+                                      <li>0.13m² of retro reflective material</li>
+                                    </ul>
+                                                 <p style="margin: 0; padding-bottom:1em;">                       
+                                      We have a wide range of  Jackets , Vests , Jackets and Trousers to keep you safe as well as warm and dry.
+                                </p>
+                                   
+                                    <div style="padding-top:0.5em; 
+                               padding-bottom:0.5em;
+                               margin-bottom:1em;
+                               width:100%;
+                               background-color:#EE7C23;
+                               color:#ffffff;
+                                      text-align:center;">
+                                 <p style="margin: 0; padding:0.5em;">
+                                 <strong>
+                                 Class 3: Highest level
+                                 </strong>
+                                 </p>
+                               
+                                    </div>
+
+                                    <p style="margin: 0; padding-bottom:1em;">
+                                      Class 3 garments offer the greatest level of visibility for people close to motorways, dual-carriageways, high-speed roads and airports. 
+                                </p>
+                                      
+                                       <p style="margin: 0; padding-bottom:0em;">
+                                         <strong>The Class 3 requirements are:</strong>
+                                    </p>
+                                    <ul>
+                                      <li>4 metres of 5cm wide reflective tape</li>
+                                      <li>0.8m² of background material</li>
+                                      <li>0.2m² of retro reflective material</li>
+                                    </ul>
+
+                                    EXAMPLES:
+                                    Hi-Vis Parkas, 
+                                    Bombers and 
+                                    long sleeved vests. ** LINKS **
+
+
+                                    <p style="margin: 0; padding-bottom:1em;">
+                                      <strong>EN ISO 20471 :2013</strong> is the revised version of the EN 471 high visibility PPE standard</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="330">
+                                    <![endif]-->
+                  <div style="display:inline-block; margin: 0 -2px; width:100%; min-width:200px; max-width:330px; vertical-align:top;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                          <p style="margin: 0; text-align: center">
+                            <strong>Keep warm this winter</strong>
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td><a href="https://www.hivis.net/227/personal-protection-equipment/thinsulate-beanie-hat/">
+                              <img src="https://gallery.mailchimp.com/2ffff4ff7feaffebb1d6be07b/images/ef078d1a-f49e-43d8-b7d6-34213f3bbc61.jpg" 
+                                   width="310" height="" border="0" alt="alt_text" class="center-on-narrow" style="width: 100%; max-width: 310px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                                   </a>
+
+
+
+
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">
+
+                                  If you want to get a warm head, <a href="https://www.hivis.net/227/personal-protection-equipment/thinsulate-beanie-hat/">get a thinsulate beanie hat! </a>
+
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/2923/personal-protection-equipment/regatta-thinsulate-fleece-gloves">
+                              <img src="https://gallery.mailchimp.com/2ffff4ff7feaffebb1d6be07b/images/46cf69a7-5234-4b35-8074-2de4490feef6.jpg" 
+                               width="310" height="" border="0" alt="alt_text" class="center-on-narrow" style="width: 100%; max-width: 310px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                               </a>
+
+
+
+
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">
+                                  Say goodbye to cold hands with these amazing value <a href="https://www.hivis.net/2923/personal-protection-equipment/regatta-thinsulate-fleece-gloves"> thinsulate fleece gloves from Regatta. </a>
+
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+
+                    </table>
+                  </div>
+                  <!--[if mso]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+                </td>
+              </tr>
+            </table>
+            <!--[if mso]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+          </td>
+        </tr>
+        <!-- 2 Even Columns : END -->
+
+        <!-- 1 Column Text + Button : BEGIN -->
+        <!--Bomber offer-->
+        <tr>
+          <td style="background-color: #ffffff;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="padding: 20px; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+
+
+                  <h1 style="margin: 0 0 10px; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;">
+                    Cold and Wet Weather Discounts
+                  </h1>
+
+                  <p style="margin: 0 0 10px;">
+                    Coming in both YELLOW &amp; ORANGE, our High-Visibility Bomber style jacket offers everything you'll need from an economy jacket.
+                  </p>
+
+                </td>
+              </tr>
+
+
+            </table>
+          </td>
+        </tr>
+        <!-- Hero Image, Flush : BEGIN -->
+        <tr>
+          <td style="background-color: #ffffff;">
+            <img src="https://gallery.mailchimp.com/2ffff4ff7feaffebb1d6be07b/images/5e6bbf44-402d-467a-9e95-ac69b7eb1e8d.png" width="680" height="" alt="alt_text" border="0" style="width: 100%; max-width: 680px; height: auto; background: #dddddd; 
+            font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto;" class="fluid g-img">
+          </td>
+        </tr>
+        <!-- Hero Image, Flush : END -->
+        <!-- 1 Column Text + Button : BEGIN -->
+        <tr>
+          <td style="background-color: #ffffff;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="padding: 20px; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+
+                  <p style="margin: 0 0 10px;">
+                    It's padded and water repellent with a polyester lining, adjustable velcro cuffs and a concealed hood. </p>
+                  <p style="margin: 0 0 10px;"><strong>
+                  <a href="https://www.hivis.net/4318/high-visibility-vests-jackets-trousers-and-more/hivis-economy-bomber-jacket-not-go-or-rt-3279/">They are now available from only £13.49!</a>
+                  </strong></p>
+                </td>
+              </tr>
+              <tr>
+
+
+                <td style="padding: 0 20px 20px;">
+                  <!-- Button : BEGIN -->
+                  <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: auto;">
+                    <tr>
+                      <td class="button-td button-td-primary" style="border-radius: 4px; background: #EE7C23;">
+                        <a class="button-a button-a-primary" href="https://www.hivis.net/4318/high-visibility-vests-jackets-trousers-and-more/hivis-economy-bomber-jacket-not-go-or-rt-3279/" style="background: #EE7C23; border: 1px solid #EE7C23; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; color: #ffffff; display: block; border-radius: 4px;">
+                          <strong> Get one now!</strong>
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- Button : END -->
+                </td>
+              </tr>
+
+            </table>
+          </td>
+        </tr>
+        <!-- 1 Column Text + Button : END -->
+
+
+
+
+        <!-- 2 Even Columns : BEGIN -->
+        <tr>
+          <td height="100%" valign="top" width="100%" style="background-color: #ffffff;">
+            <!--[if mso]>
+                        <table align="center" role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                        <tr>
+                        <td valign="top" width="660">
+                        <![endif]-->
+            <table align="center" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:660px;">
+              <tr>
+                <td align="center" valign="top" style="font-size:0; padding: 10px 0;">
+                  <!--[if mso]>
+                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                                    <tr>
+                                    <td valign="top" width="330">
+                                    <![endif]-->
+                  <div style="display:inline-block; margin: 0 -2px; width:100%; min-width:200px; max-width:330px; vertical-align:top;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="http://www.facebook.com/hivis.net">
+                                <img src="https://gallery.mailchimp.com/ad80b8ca80a86b140b303173b/images/8fad48d8-d32e-4554-b7b5-f97c2a9992b5.jpg" 
+                                width="310" height="" border="0" 
+                                alt="Find us on Facebook" 
+                                class="center-on-narrow" style="width: 100%; max-width: 310px; height: auto; background: #dddddd; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                               </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;"><strong>
+                                 <a href="http://www.facebook.com/hivis.net">
+                                   Find us on facebook<br>
+                                   facebook.com/hivis.net
+                                   </a></strong>
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="330">
+                                    <![endif]-->
+                  <div style="display:inline-block; margin: 0 -2px; width:100%; min-width:200px; max-width:330px; vertical-align:top;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td> <a href="https://twitter.com/Hivisnet">
+                                <img src="https://gallery.mailchimp.com/ad80b8ca80a86b140b303173b/images/064c197f-ff42-4347-81bf-8f96dd2f523d.jpg" 
+                                width="310" height="" border="0" 
+                                alt="Follow us on twitter" 
+                                class="center-on-narrow" style="width: 100%; max-width: 310px; height: auto; background: #dddddd; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                                </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;"> <strong>
+                                <a href="https://twitter.com/Hivisnet" >
+                                  Follow us on twitter<br>twitter.com/Hivisnet
+                                </a>
+                                </strong>
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!--[if mso]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+                </td>
+              </tr>
+            </table>
+            <!--[if mso]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+          </td>
+        </tr>
+        <!-- 2 Even Columns : END -->
+
+
+
+
+        <!-- 4 Even Columns Chris set1: BEGIN -->
+        <tr>
+          <td height="100%" valign="top" width="100%" style="padding: 10px 0; background-color: #ffffff;">
+            <!--[if mso]>
+                        <table align="center" role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                        <tr>
+                        <td valign="top" width="660">
+                        <![endif]-->
+            <table align="center" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:660px;">
+              <tr>
+                <td align="center" valign="top" style="font-size:0;">
+                  <!--[if mso]>
+                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                                    <tr>
+                                    <td valign="top" width="1650">
+                                    <![endif]-->
+
+                  <!--Quarter column 1-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/dickies.png" width="145" height="" border="0" 
+                                alt="Dickies" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">Dickies</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+                  <!--Quarter column 2-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/regatta.png" width="145" height="" border="0" 
+                                alt="Regatta" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">Regatta</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+
+                  <!--Quarter column 3-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/jsp.png" width="145" height="" border="0" 
+                                alt="JSP" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">JSP</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+                  <!--Quarter column 4-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/deltaplus.png" width="145" height="" border="0" 
+                                alt="DeltaPlus" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">DeltaPlus</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+
+
+
+
+                  <!--[if mso]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+                </td>
+              </tr>
+            </table>
+            <!--[if mso]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+          </td>
+        </tr>
+        <!-- 4 Even Columns Chris set1: END -->
+
+        <!-- 4 Even Columns Chris set2 : BEGIN -->
+        <tr>
+          <td height="100%" valign="top" width="100%" style="padding: 10px 0; background-color: #ffffff;">
+            <!--[if mso]>
+                        <table align="center" role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                        <tr>
+                        <td valign="top" width="660">
+                        <![endif]-->
+            <table align="center" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:660px;">
+              <tr>
+                <td align="center" valign="top" style="font-size:0;">
+                  <!--[if mso]>
+                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                                    <tr>
+                                    <td valign="top" width="1650">
+                                    <![endif]-->
+
+                  <!--Quarter column 1-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/uneek.png"  width="145" height="" border="0" 
+                                alt="Uneek" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">Uneek</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+                  <!--Quarter column 2-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/fruit.png"  width="145" height="" border="0" 
+                                alt="Fruit of the Loom" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">Fruit of the Loom</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+
+                  <!--Quarter column 3-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/jcb.png"  width="145" height="" border="0" 
+                                alt="JCB" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">JCB</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+                  <!--Quarter column 4-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/psf.png"  width="145" height="" border="0" 
+                                alt="PSF Progressive Safety Footwear" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">PSF - Progressive Safety Footwear</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+
+
+
+
+                  <!--[if mso]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+                </td>
+              </tr>
+            </table>
+            <!--[if mso]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+          </td>
+        </tr>
+        <!-- 4 Even Columns Chris set2 : END -->
+
+        <!-- 4 Even Columns Chris set3: BEGIN -->
+        <tr>
+          <td height="100%" valign="top" width="100%" style="padding: 10px 0; background-color: #ffffff;">
+            <!--[if mso]>
+                        <table align="center" role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                        <tr>
+                        <td valign="top" width="660">
+                        <![endif]-->
+            <table align="center" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:660px;">
+              <tr>
+                <td align="center" valign="top" style="font-size:0;">
+                  <!--[if mso]>
+                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                                    <tr>
+                                    <td valign="top" width="1650">
+                                    <![endif]-->
+
+                  <!--Quarter column 1-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/gildan.png" 
+                                width="145" height="" border="0" 
+                                alt="Gildan" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">Gildan</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+                  <!--Quarter column 2-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/leo.png" width="145" height="" border="0" 
+                                alt="Leo Workwear" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">Leo Workwear</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+
+                  <!--Quarter column 3-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/bbrand.png"  width="145" height="" border="0" 
+                                alt="B Brand" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">B Brand</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+                  <!--Quarter column 4-->
+                  <div style="display:inline-block; margin: 0 -2px; max-width:25%; min-width:165px; vertical-align:top; width:100%;" class="stack-column">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 10px 10px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                            <tr>
+                              <td>
+                                <a href="https://www.hivis.net/">
+                                <img src="https://assets.hivis.net/8/en/Email/tuffstuf.png"  width="145" height="" border="0"  
+                                alt="Tuffstuff" class="center-on-narrow" style="width: 100%; max-width: 200px; 
+                                height: auto; background: #dddddd; 
+                                font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif;
+                                font-size: 15px; line-height: 20px; color: #555555;"></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                                <p style="margin: 0;">Tuffstuff</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!--[if mso]>
+                                    </td>
+                                    <td valign="top" width="165">
+                                    <![endif]-->
+
+
+
+
+                  <!--[if mso]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+                </td>
+              </tr>
+            </table>
+            <!--[if mso]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+          </td>
+        </tr>
+        <!-- 4 Even Columns Chris set3: END -->
+
+        <!-- Clear Spacer : BEGIN -->
+        <tr>
+          <td aria-hidden="true" height="40" style="font-size: 0px; line-height: 0px;">
+            &nbsp;
+          </td>
+        </tr>
+        <!-- Clear Spacer : END -->
+
+        <!-- 1 Column Text : BEGIN -->
+        <tr>
+          <td style="background-color: #ffffff;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="padding: 20px; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                  <p style="margin: 0 0 10px 0;">
+                    Why have I received this email?
+                  </p>
+
+                  <p style="margin: 0 0 10px 0;">
+                    We send out 2 emails per month, which we hope isn't too much as we would hate to bombard you. In order to receive our exclusive offers and new lines, please stay subscribed. We also have deals on our twitter and facebook! Follow us to stay updated.
+                  </p>
+
+                  <p style="margin: 0 0 10px 0;">
+                    <strong> Get in touch</strong>
+                  </p>
+
+                  <p style="margin: 0 0 10px 0;">
+                    Contact us on 0845 009 6750. <br> Available Monday to Friday 8am to 5pm (4.30pm on Fridays). <br> Online support is also available via email at info@sitesupplyco.com.
+                  </p>
+
+                  <p style="margin: 0 0 10px 0;">
+                    The best equipment at the best prices <br> Keeping your site supplied for 15 years
+                  </p>
+
+                  <p style="margin: 0 0 10px 0;">
+                    <a href="https://www.hivis.net/"> www.hivis.net</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- 1 Column Text : END -->
+
+      </table>
+      <!-- Email Body : END -->
+
+      <!-- Email Footer : BEGIN -->
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 680px;">
+        <tr>
+          <td style="padding: 20px; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 12px; line-height: 15px; text-align: center; color: #888888;">
+
+
+            This email was sent to *|EMAIL|*
+            <br> why did I get this?
+            <br>
+            <a href="*|UPDATE_PROFILE|*">update your preferences</a> or
+            <unsubscribe style="color: #888888; text-decoration: underline;">
+              <a href="*|UNSUB|*">unsubscribe from this list</a>.
+              <br>*|LIST:ADDRESSLINE|*
+            </unsubscribe>
+          </td>
+        </tr>
+      </table>
+      <!-- Email Footer : END -->
+
+      <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+    </div>
+
+    <!-- Full Bleed Background Section : BEGIN -->
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #EE7C23;">
+      <tr>
+        <td valign="top">
+          <div style="max-width: 680px; margin: 0 auto;" class="email-container">
+            <!--[if mso]>
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="680" align="center">
+                        <tr>
+                        <td>
+                        <![endif]-->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="padding: 20px; text-align: left; font-family: 'Open Sans', tahoma, verdana, segoe, arial, sans-serif; font-size: 15px; line-height: 20px; color: #ffffff;">
+                  <p style="margin: 0;">
+
+                </td>
+              </tr>
+            </table>
+            <!--[if mso]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+          </div>
+        </td>
+      </tr>
+    </table>
+    <!-- Full Bleed Background Section : END -->
+
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <![endif]-->
+  </center>
+</body>
+
+</html>
